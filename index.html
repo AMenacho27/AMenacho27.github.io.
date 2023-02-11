@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table, th, td {
+      border:1px solid black;
+    }
+    p{
+      font-family: 'Roboto', sans-serif;
+    }
+    </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+<body>
+    <!--<script>
+        function calculate() {
+            var my1 = parseFloat(document.getElementById('precio1').value);
+            var my2 = parseInt(document.getElementById('cant1').value);
+            var result = document.getElementById('sparkle-row-total');
+            var result2 = document.getElementById('sparkle-row-total2');
+            var myResult = (my1 * parseInt(my2)).toFixed(2); // Parse the strings
+            var masiva = Math.round(myResult/17.09);
+            result.value = myResult;
+            result2.value = masiva;
+
+
+            console.log(isNaN(my1));
+            console.log(typeof my1);
+            console.log(typeof my2);
+            console.log(isNaN(my2))
+            console.log(my1*my2);
+            }
+          
+        </script>
+      -->
+    <table >
+        <tr>
+          <th><p >TIPO DE ORDEN</p></th>
+          <th><p>Valor</p></th>
+          <th><p>Cantidad</p></th>
+        </tr>
+        <tr>
+          <td style="width: 400px; background-color:lightblue">
+            <p style="text-align: center; font-weight: bolder;">Inspeccion totalizador </p>
+            <p style="text-align:justify;">
+            reparación menor y/o reemplazo de medidor dañado
+            se puede usar la misma caja - o conexión floja</p> 
+        </td>
+          <td> <input type="text" style="text-align: center; pointer-events: none; border:0" id="precio1" value="17.09" size="2"> </td>
+          <td> <input size="2" style="display: block; margin:0 auto; text-align:center" id="cant1" size="5"></td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align: center;">
+            Totalizador
+            </p>
+            <p style="text-align:justify;">
+            Reparación caja y medidor 
+            (porque no se puede cambiar solo el medidor ya que el modelo nuevo no entra en la caja anterior)
+              y/o realambrado de CTs
+            </p>
+          </td>
+          <td> <input type="text" style="text-align: center; pointer-events: none; border:0" id="precio2" value="32.70" size="2"> </td>
+          <td> <input size="2" style="display: block; margin:0 auto; text-align:center" id="cant2" size="5"></td>
+        </tr>
+        <tr>
+          <td>
+            <p style="text-align:center;">
+              Instalación totalizador 3f aéreo - diferente TX
+            </p>
+          </td>
+          <td> <input type="text" style="text-align: center; pointer-events: none; border:0" id="precio3" value="53.25" size="2"> </td>
+          <td> <input size="2" style="display: block; margin:0 auto; text-align:center" id="cant3" size="5"></td>
+        </tr>
+        <tr>
+
+          <tr>
+            <td>
+              <p style="text-align:center;">
+                Instalación totalizador monof aéreo -  diferente TX
+              </p>
+            </td>
+            <td> <input type="text" style="text-align: center; pointer-events: none; border:0" id="precio4" value="46.66" size="2"> </td>
+            <td> <input size="2" style="display: block; margin:0 auto; text-align:center" id="cant4" size="5"></td>
+          </tr>
+          <tr>
+            <td>
+              <p style="text-align:center;">
+                Instalación totalizador 3f gabinete -  diferente TX
+              </p>
+            </td>
+            <td> <input type="text" style="text-align: center; pointer-events: none; border:0" id="precio5" value="46.66" size="2"> </td>
+            <td> <input size="2" style="display: block; margin:0 auto; text-align:center" id="cant5" size="5"></td>
+          </tr>
+
+          <tr>
+            <td>
+              <p style="text-align:center;">
+                Instalación totalizador monof gabinete -  diferente TX
+              </p>
+            </td>
+            <td> <input type="text" style="text-align: center; pointer-events: none; border:0" id="precio6" value="43.66" size="2"> </td>
+            <td> <input size="2" style="display: block; margin:0 auto; text-align:center" id="cant6" size="5"></td>
+          </tr>
+
+          <tr>
+
+            <td colspan="2"><p style="text-align: center; font-weight:bold">TOTAL DIA</p></td>
+            <td><input id="sparkle-row-total" size="2" style="display: block; margin: 0 auto; text-align:center; pointer-events: none"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><p style="text-align: center; font-weight:bold">EQUIVALENTE MASIVAS</p></td>
+            <td><input id="sparkle-row-total2" size="2" style="display: block; margin: 0 auto; text-align:center; pointer-events: none"></td>
+        </tr>
+      </table>
+      <br>
+      
+      <!--
+        <button onclick="calculate()">Calcular</button>
+      --> 
+
+    <script>
+        $("#precio1, #cant1, #precio2, #cant2, #precio3, #cant3, #precio4, #cant4, #precio5, #cant5, #precio6, #cant6").keyup(function(){
+            update();
+        });
+        
+        function update() {
+          $("#sparkle-row-total").val((
+            $('#precio2').val() * $('#cant2').val()+
+            $('#precio1').val() * $('#cant1').val()+
+            $('#precio3').val() * $('#cant3').val()+
+            $('#precio4').val() * $('#cant4').val()+
+            $('#precio5').val() * $('#cant5').val()+
+            $('#precio6').val() * $('#cant6').val()).toFixed(1));
+          /*$("#sparkle-row-total").val(($('#precio2').val() * $('#cant2').val()).toFixed(2));*/
+          $("#sparkle-row-total2").val(($('#sparkle-row-total').val()/17.09).toFixed(0));
+        }
+
+    </script>
+</body>
+</html>
